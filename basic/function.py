@@ -3,6 +3,7 @@
 
 import math
 import os
+from functools import reduce
 
 def quadratic(a, b, c):
     if not (isinstance(a, (int, float)) and isinstance(b, (int, float)) and isinstance(c, (int, float))):
@@ -43,3 +44,19 @@ def nameNormalize(name):
     if not isinstance(name, str):
         raise TypeError
     return name.capitalize()
+
+def prod(L):
+    def fn(a, b):
+        return a * b
+    return reduce(fn, L)
+
+def createCounter():
+    def f():
+        i = 1
+        while True:
+            yield i
+            i += 1
+    it = f()
+    def counter():
+        return next(it)
+    return counter

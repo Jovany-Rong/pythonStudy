@@ -17,3 +17,29 @@ def quadratic(a, b, c):
             return - b / 2 * a
         else:
             return ((- b + math.sqrt(delta)) / 2 * a, (- b - math.sqrt(delta)) / 2 * a)
+
+def multiple(*num):
+    for x in num:
+        if not isinstance(x, (int, float)):
+            raise TypeError('bad operand type')
+    m = 1
+    for x in num:
+        m *= x
+    return m
+
+def findMinAndMax(L):
+    if L == []:
+        return(None, None)
+    min = L[0]
+    max = L[0]
+    for i in L:
+        if min > i:
+            min = i
+        if max < i:
+            max = i
+    return (min, max)
+
+def nameNormalize(name):
+    if not isinstance(name, str):
+        raise TypeError
+    return name.capitalize()

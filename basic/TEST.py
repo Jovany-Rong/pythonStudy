@@ -72,6 +72,8 @@ if prod([3, 5, 7, 9]) == 945:
 else:
     print('测试失败!')
 """
+"""
+执行计数
 from function import createCounter
 counterA = createCounter()
 print(counterA(), counterA(), counterA(), counterA(), counterA()) # 1 2 3 4 5
@@ -80,3 +82,74 @@ if [counterB(), counterB(), counterB(), counterB()] == [1, 2, 3, 4]:
     print('测试通过!')
 else:
     print('测试失败!')
+"""
+"""
+执行时间
+from decorators import metric
+import time
+@metric
+def fast(x, y):
+    time.sleep(0.0012)
+    return x + y;
+
+@metric
+def slow(x, y, z):
+    time.sleep(0.1234)
+    return x * y * z;
+
+f = fast(11, 22)
+s = slow(11, 22, 33)
+if f != 33:
+    print('测试失败!')
+elif s != 7986:
+    print('测试失败!')
+"""
+"""
+设置性别
+from classes import Student
+bart = Student('Bart', 'male')
+if bart.get_gender() != 'male':
+    print('测试失败!')
+else:
+    bart.set_gender('female')
+    if bart.get_gender() != 'female':
+        print('测试失败!')
+    else:
+        print('测试成功!')
+"""
+"""
+class Screen(object):
+    @property
+    def width(self):
+        return self.__width
+    
+    @width.setter
+    def width(self, value):
+        self.__width = value
+    
+    @property
+    def height(self):
+        return self.__height
+
+    @height.setter
+    def height(self, value):
+        self.__height = value
+    
+    @property
+    def resolution(self):
+        return self.__height * self.__width
+
+s = Screen()
+s.width = 1024
+s.height = 768
+print('resolution =', s.resolution)
+if s.resolution == 786432:
+    print('测试通过!')
+else:
+    print('测试失败!')
+"""
+fpath = r'C:\Windows\system.ini'
+
+with open(fpath, 'r') as f:
+    s = f.read()
+    print(s)
